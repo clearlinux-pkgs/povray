@@ -1,0 +1,14 @@
+# Force addition of missing files
+cd unix
+sed -i \
+ -e 's,automake --warnings=all,automake -a -f --warnings-all,' \
+ prebuild.sh
+
+./prebuild.sh
+cd ..
+
+# Fix wrong newline encoding
+dos2unix -k unix/scripts/*.sh
+
+# Because it sets it automatically
+export COMPILED_BY="ClearLinux Project"

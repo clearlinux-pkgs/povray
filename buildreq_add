@@ -1,0 +1,10 @@
+# This file contains additional build requirements that did not get
+# picked up automatically. One name per line, no whitespace.
+boost-dev
+libjpeg-turbo-dev
+libpng-dev
+zlib-dev
+openexr-dev
+SDL-dev
+libXpm-dev
+dos2unix

@@ -1,0 +1,6 @@
+--with-boost-libdir=%{_libdir}
+--x-includes=%{_includedir}
+--x-libraries=%{_libdir}
+--disable-silent-rules
+--disable-strip
+--sysconfdir=/usr/share/defaults/

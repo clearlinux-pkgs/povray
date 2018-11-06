@@ -1,0 +1,12 @@
+# Filter out bogus and potentially harmful
+# -I%%{_includedir} -L%%{_libdir}
+# from Makefiles
+find -name Makefile -exec sed -i \
+  -e 's,-I%{_includedir}$,,g;s,-I%{_includedir} ,,g;' \
+  -e 's,-L%{_libdir}$,,g;s,-L%{_libdir} ,,g' {} \;
+
+# Adjust bogus paths
+sed -i \
+  -e '/DEFAULT_DIR=/d' \
+  -e 's,SYSCONFDIR=\$DEFAULT_DIR/etc,SYSCONFDIR=/usr/share/defaults,' \
+  scripts/{allanim,allscene,portfolio}.sh

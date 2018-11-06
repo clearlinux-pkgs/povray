@@ -1,0 +1,10 @@
+Configure miss: whether $C_INCLUDE_PATH contains the "." path
+Configure miss: whether $CPLUS_INCLUDE_PATH contains the "." path
+Configure miss: whether to link with cygwin DLL
+Configure miss: whether to enable static linking
+Configure miss: sin in -lmkl
+Configure miss: XFlush in -lX11
+Configure miss: whether to enable debugging
+Configure miss: whether to enable profiling
+Configure miss: whether to enable stripping
+Configure miss: whether g++ accepts -xHost
