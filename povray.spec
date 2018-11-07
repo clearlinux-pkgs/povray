@@ -4,7 +4,7 @@
 #
 Name     : povray
 Version  : 3.7.0.8
-Release  : 1
+Release  : 2
 URL      : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Source0  : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Summary  : zlib compression library
@@ -109,7 +109,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1541541196
+export SOURCE_DATE_EPOCH=1541553286
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
@@ -139,7 +139,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1541541196
+export SOURCE_DATE_EPOCH=1541553286
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/povray
 cp LICENSE %{buildroot}/usr/share/package-licenses/povray/LICENSE
