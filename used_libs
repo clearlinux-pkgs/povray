@@ -1,7 +1,13 @@
 ld-linux-x86-64.so.2
 libHalf.so.23
 libIex-2_2.so.23
+libIexMath-2_2.so.23
 libIlmImf-2_2.so.23
+libIlmThread-2_2.so.23
+libImath-2_2.so.23
+libSDL-1.2.so.0
+libX11.so.6
+libXpm.so.4
 libboost_system.so.1.68.0
 libboost_thread.so.1.68.0
 libc.so.6

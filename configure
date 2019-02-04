@@ -4,3 +4,4 @@
 --disable-silent-rules
 --disable-strip
 --sysconfdir=/usr/share/defaults/
+--disable-optimiz-arch
