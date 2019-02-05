@@ -8,3 +8,24 @@ Configure miss: whether to enable debugging
 Configure miss: whether to enable profiling
 Configure miss: whether to enable stripping
 Configure miss: whether to enable architecture-specific optimizations
+Configure miss: whether $C_INCLUDE_PATH contains the "." path
+Configure miss: whether $CPLUS_INCLUDE_PATH contains the "." path
+Configure miss: whether to link with cygwin DLL
+Configure miss: whether to enable static linking
+Configure miss: sin in -lmkl
+Configure miss: whether to enable the watch cursor
+Configure miss: whether to enable debugging
+Configure miss: whether to enable profiling
+Configure miss: whether to enable stripping
+Configure miss: whether to enable architecture-specific optimizations
+Configure miss: whether $C_INCLUDE_PATH contains the "." path
+Configure miss: whether $CPLUS_INCLUDE_PATH contains the "." path
+Configure miss: whether to link with cygwin DLL
+Configure miss: whether to enable static linking
+Configure miss: sin in -lmkl
+Configure miss: whether to enable the watch cursor
+Configure miss: working memcmp
+Configure miss: whether to enable debugging
+Configure miss: whether to enable profiling
+Configure miss: whether to enable stripping
+Configure miss: whether to enable architecture-specific optimizations

@@ -4,7 +4,7 @@
 #
 Name     : povray
 Version  : 3.7.0.8
-Release  : 3
+Release  : 4
 URL      : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Source0  : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Summary  : zlib compression library
@@ -93,6 +93,12 @@ man components for the povray package.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+pushd ..
+cp -a povray-3.7.0.8 buildavx2
+popd
+pushd ..
+cp -a povray-3.7.0.8 buildavx512
+popd
 
 %build
 ## build_prepend content
@@ -109,7 +115,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549310931
+export SOURCE_DATE_EPOCH=1549409019
 export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 export FCFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
 export FFLAGS="$CFLAGS -O3 -falign-functions=32 -ffast-math -fno-math-errno -fno-semantic-interposition -fno-trapping-math -ftree-loop-vectorize "
@@ -131,6 +137,72 @@ sed -i \
 scripts/{allanim,allscene,portfolio}.sh
 ## make_prepend end
 make  %{?_smp_mflags}
+unset PKG_CONFIG_PATH
+pushd ../buildavx2/
+## build_prepend content
+cd unix
+sed -i \
+-e 's,automake --warnings=all,automake -a -f --warnings-all,' \
+prebuild.sh
+./prebuild.sh
+cd ..
+dos2unix -k unix/scripts/*.sh
+export COMPILED_BY="ClearLinux Project"
+## build_prepend end
+export CFLAGS="$CFLAGS -m64 -march=haswell"
+export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
+export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+%reconfigure --disable-static --with-boost-libdir=%{_libdir} \
+--x-includes=%{_includedir} \
+--x-libraries=%{_libdir} \
+--disable-silent-rules \
+--disable-strip \
+--sysconfdir=/usr/share/defaults/ \
+--disable-optimiz-arch
+## make_prepend content
+find -name Makefile -exec sed -i \
+-e 's,-I%{_includedir}$,,g;s,-I%{_includedir} ,,g;' \
+-e 's,-L%{_libdir}$,,g;s,-L%{_libdir} ,,g' {} \;
+sed -i \
+-e '/DEFAULT_DIR=/d' \
+-e 's,SYSCONFDIR=\$DEFAULT_DIR/etc,SYSCONFDIR=/usr/share/defaults,' \
+scripts/{allanim,allscene,portfolio}.sh
+## make_prepend end
+make  %{?_smp_mflags}
+popd
+unset PKG_CONFIG_PATH
+pushd ../buildavx512/
+## build_prepend content
+cd unix
+sed -i \
+-e 's,automake --warnings=all,automake -a -f --warnings-all,' \
+prebuild.sh
+./prebuild.sh
+cd ..
+dos2unix -k unix/scripts/*.sh
+export COMPILED_BY="ClearLinux Project"
+## build_prepend end
+export CFLAGS="$CFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=512"
+export CXXFLAGS="$CXXFLAGS -m64 -march=skylake-avx512 -mprefer-vector-width=512"
+export LDFLAGS="$LDFLAGS -m64 -march=skylake-avx512"
+%reconfigure --disable-static --with-boost-libdir=%{_libdir} \
+--x-includes=%{_includedir} \
+--x-libraries=%{_libdir} \
+--disable-silent-rules \
+--disable-strip \
+--sysconfdir=/usr/share/defaults/ \
+--disable-optimiz-arch
+## make_prepend content
+find -name Makefile -exec sed -i \
+-e 's,-I%{_includedir}$,,g;s,-I%{_includedir} ,,g;' \
+-e 's,-L%{_libdir}$,,g;s,-L%{_libdir} ,,g' {} \;
+sed -i \
+-e '/DEFAULT_DIR=/d' \
+-e 's,SYSCONFDIR=\$DEFAULT_DIR/etc,SYSCONFDIR=/usr/share/defaults,' \
+scripts/{allanim,allscene,portfolio}.sh
+## make_prepend end
+make  %{?_smp_mflags}
+popd
 
 %check
 export LANG=C
@@ -140,7 +212,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check
 
 %install
-export SOURCE_DATE_EPOCH=1549310931
+export SOURCE_DATE_EPOCH=1549409019
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/povray
 cp LICENSE %{buildroot}/usr/share/package-licenses/povray/LICENSE
@@ -153,6 +225,12 @@ cp libraries/png/LICENSE %{buildroot}/usr/share/package-licenses/povray/librarie
 cp libraries/tiff/COPYRIGHT %{buildroot}/usr/share/package-licenses/povray/libraries_tiff_COPYRIGHT
 cp libraries/zlib/contrib/dotzlib/LICENSE_1_0.txt %{buildroot}/usr/share/package-licenses/povray/libraries_zlib_contrib_dotzlib_LICENSE_1_0.txt
 cp unix/COPYING %{buildroot}/usr/share/package-licenses/povray/unix_COPYING
+pushd ../buildavx512/
+%make_install_avx512 povdocdir=%{_usr}/share/doc/povray
+popd
+pushd ../buildavx2/
+%make_install_avx2 povdocdir=%{_usr}/share/doc/povray
+popd
 %make_install povdocdir=%{_usr}/share/doc/povray
 
 %files
@@ -160,6 +238,8 @@ cp unix/COPYING %{buildroot}/usr/share/package-licenses/povray/unix_COPYING
 
 %files bin
 %defattr(-,root,root,-)
+/usr/bin/haswell/avx512_1/povray
+/usr/bin/haswell/povray
 /usr/bin/povray
 
 %files data
