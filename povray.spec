@@ -4,7 +4,7 @@
 #
 Name     : povray
 Version  : 3.7.0.8
-Release  : 5
+Release  : 6
 URL      : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Source0  : https://github.com/POV-Ray/povray/archive/v3.7.0.8.tar.gz
 Summary  : zlib compression library
