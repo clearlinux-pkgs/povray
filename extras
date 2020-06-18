@@ -34,7 +34,9 @@
 /usr/share/povray-3.7/scenes/advanced/diffuse_back.pov
 /usr/share/povray-3.7/scenes/advanced/drums2/drums.inc
 /usr/share/povray-3.7/scenes/advanced/drums2/drums.pov
-/usr/share/povray-3.7/scenes/advanced/drums2/rednewt.png /usr/share/povray-3.7/scenes/advanced/float5.pov /usr/share/povray-3.7/scenes/advanced/glasschess/chesspiece1.inc
+/usr/share/povray-3.7/scenes/advanced/drums2/rednewt.png
+/usr/share/povray-3.7/scenes/advanced/float5.pov
+/usr/share/povray-3.7/scenes/advanced/glasschess/chesspiece1.inc
 /usr/share/povray-3.7/scenes/advanced/glasschess/glasschess.pov
 /usr/share/povray-3.7/scenes/advanced/grenadine/grenadine.pov
 /usr/share/povray-3.7/scenes/advanced/grenadine/lemon.inc
@@ -2573,4 +2575,3 @@
 /usr/share/povray-3.7/scenes/textures/pigments/txtrmap.pov
 /usr/share/povray-3.7/scenes/textures/pigments/warp1.pov
 /usr/share/povray-3.7/scenes/textures/pigments/warp2.pov
-
